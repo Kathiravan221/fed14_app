@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+/* 🌸 MAIN LAYOUT */
+.gift-section {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+/* 🎵 MUSIC PLAYER */
+.music-player {
+  background: rgba(255,255,255,0.95);
+  border-radius: 22px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+
+  /* animation */
+  animation: slideFade 1.2s ease forwards;
+}
+
+.album {
+  width: 180px;
+  max-width: 100%;
+  border-radius: 16px;
+  margin-bottom: 15px;
+
+  /* floating effect */
+  animation: float 4s ease-in-out infinite;
+}
+
+.music-player h1 {
+  font-family: "Playfair Display", serif;
+  color: #c2185b;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+audio {
+  width: 100%;
+  outline: none;
+}
+
+/* 📜 LOVE LETTER */
+.love-letter {
+  background: linear-gradient(135deg, #9b6a3c, #7a4a1f);
+  color: #2b1a0f;
+  padding: 35px 25px;
+  border-radius: 10px;
+  font-family: "Dancing Script", cursive;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.4),
+              0 20px 40px rgba(0,0,0,0.25);
+  position: relative;
+
+  /* animation */
+  animation: fadeIn 1.5s ease forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+/* burned edges look */
+.love-letter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.6);
+  pointer-events: none;
+}
+
+.love-letter h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.love-letter p {
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.signature {
+  display: block;
+  margin-top: 20px;
+  font-size: 26px;
+  text-align: right;
+}
+
+/* ✨ ANIMATIONS */
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}

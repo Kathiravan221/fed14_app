@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine ❤️</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Soft floating hearts -->
+  <div class="bg-hearts"></div>
+
+  <main class="wrapper">
+    <section class="card">
+
+      <span class="small-text">Hey you 💌</span>
+      <h1>Will you be<br>my Valentine?</h1>
+
+      <p>
+        I have something special prepared,  
+        just waiting for you 💖
+      </p>
+
+      <div class="buttons">
+        <button class="btn yes" onclick="goNext()">Yes 💕</button>
+        <button class="btn no" onclick="shakeNo(this)">No 🙈</button>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    function goNext() {
+      window.location.href = "wish.html";
+    }
+
+    function shakeNo(btn) {
+      btn.classList.remove("shake");
+      void btn.offsetWidth;
+      btn.classList.add("shake");
+    }
+  </script>
+
+</body>
+</html>

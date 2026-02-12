@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffe0e9, #ffc3d1);
+  overflow: hidden;
+}
+
+/* BACKGROUND */
+.bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(#ffffff55 2px, transparent 2px);
+  background-size: 45px 45px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* CENTER */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: rgba(255, 255, 255, 0.94);
+  padding: 40px 30px;
+  border-radius: 26px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 35px 70px rgba(0,0,0,0.18);
+}
+
+/* TEXT */
+.small-text {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #c94b6a;
+  text-transform: uppercase;
+}
+
+.card h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: #5a1d2b;
+  margin: 20px 0;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.subtitle span {
+  color: #c94b6a;
+  font-weight: 500;
+}
+
+/* MESSAGE */
+.message {
+  background: #fff5f8;
+  padding: 25px;
+  border-radius: 18px;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+/* TEDDY */
+.teddy img {
+  width: 140px;
+  margin-bottom: 25px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 14px 34px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff5f7e, #ff8fa3);
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 12px 30px rgba(255,95,126,0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(255,95,126,0.6);
+}
+
+/* 🌸 ANIMATIONS */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* APPLY */
+.animate-card {
+  animation: fadeUp 1s ease forwards;
+}
+
+.animate-title {
+  animation: zoomIn 1s ease forwards;
+}
+
+.animate-fade {
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+.delay-3 { animation-delay: 0.9s; }
+
+.heartbeat {
+  animation: heartbeat 2s infinite;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .card {
+    padding: 40px 25px;
+  }
+
+  .card h1 {
+    font-size: 30px;
+  }
+
+  .teddy img {
+    width: 120px;
+  }
+}

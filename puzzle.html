@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="puzzle.css">
+</head>
+<body>
+
+<div class="bg"></div>
+
+<main class="wrapper">
+  <section class="card">
+
+    <!-- STEP 1 : PUZZLE -->
+    <section id="puzzleSection">
+      <h1>Just a Little Puzzle 🧩</h1>
+      <p class="subtitle">Almost done… just finish it 💕</p>
+
+      <div class="puzzle" id="puzzle"></div>
+    </section>
+
+    <!-- STEP 2 : SOLVED IMAGE -->
+    <section id="solvedSection" class="hidden">
+      <h1>You Did It ❤️</h1>
+      <p class="subtitle">This is what you completed 💖</p>
+
+      <img src="picture/love.png" alt="Solved Memory" class="solved-img">
+    </section>
+
+    <!-- STEP 3 : HEART GAME -->
+    <section id="heartSection" class="hidden">
+      <h1>Find My Heart ❤️</h1>
+      <p class="subtitle">One of these is for you 💝</p>
+
+      <div class="cards" id="cards"></div>
+
+      <button class="btn disabled" id="giftBtn" onclick="goGift()">
+        Open Your Gift 🎁
+      </button>
+    </section>
+
+  </section>
+</main>
+
+<script>
+/* ---------- PUZZLE LOGIC ---------- */
+const puzzle = document.getElementById("puzzle");
+const puzzleSection = document.getElementById("puzzleSection");
+const solvedSection = document.getElementById("solvedSection");
+const heartSection = document.getElementById("heartSection");
+
+const size = 3;
+let pieces = [];
+let selected = null;
+
+function initPuzzle() {
+  for (let i = 0; i < size * size; i++) {
+    const piece = document.createElement("div");
+    piece.className = "piece";
+    piece.style.backgroundImage = "url('picture/love.png')";
+    piece.style.backgroundPosition =
+      `${-(i % size) * 100}% ${-Math.floor(i / size) * 100}%`;
+    piece.dataset.index = i;
+
+    piece.onclick = () => swap(piece);
+    pieces.push(piece);
+  }
+
+  // EASY SHUFFLE (almost solved)
+  [pieces[0], pieces[1]] = [pieces[1], pieces[0]];
+  [pieces[7], pieces[8]] = [pieces[8], pieces[7]];
+
+  pieces.forEach(p => puzzle.appendChild(p));
+}
+
+function swap(piece) {
+  if (!selected) {
+    selected = piece;
+    piece.classList.add("selected");
+  } else {
+    const i1 = pieces.indexOf(selected);
+    const i2 = pieces.indexOf(piece);
+
+    [pieces[i1], pieces[i2]] = [pieces[i2], pieces[i1]];
+    puzzle.innerHTML = "";
+    pieces.forEach(p => puzzle.appendChild(p));
+
+
+    selected.classList.remove("selected");
+    selected = null;
+
+    checkPuzzle();
+  }
+}
+
+function checkPuzzle() {
+  const currentPieces = [...puzzle.children];
+
+  const solved = currentPieces.every(
+    (piece, index) => Number(piece.dataset.index) === index
+  );
+
+  if (solved) {
+    puzzleSection.style.display = "none";
+    solvedSection.classList.remove("hidden");
+
+    setTimeout(() => {
+      heartSection.classList.remove("hidden");
+    }, 1500);
+  }
+}
+
+
+initPuzzle();
+
+/* ---------- HEART GAME ---------- */
+const cardsContainer = document.getElementById("cards");
+const giftBtn = document.getElementById("giftBtn");
+
+const totalCards = 6;
+const heartIndex = Math.floor(Math.random() * totalCards);
+
+for (let i = 0; i < totalCards; i++) {
+  const card = document.createElement("div");
+  card.className = "heart-card";
+  card.innerHTML = "💌";
+
+  card.onclick = () => {
+    if (i === heartIndex) {
+      card.classList.add("found");
+      giftBtn.classList.remove("disabled");
+    } else {
+      card.classList.add("miss");
+    }
+    card.onclick = null;
+  };
+
+  cardsContainer.appendChild(card);
+}
+
+function goGift() {
+  window.location.href = "gift.html";
+}
+</script>
+
+</body>
+</html>
